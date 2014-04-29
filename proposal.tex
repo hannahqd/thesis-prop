@@ -55,9 +55,45 @@
 
 \pagestyle{plain}
 
+\begin{abstract}
+
+Apps use access to hardware resources and sensitive 
+user data to enable users to customize their devices. 
+Because these apps are usually written by untrusted 
+third-parties, they become significant attack vectors 
+on users security and privacy. To protect themselves, 
+users need to be able to control apps’ access to 
+sensitive resources. Most systems with apps give users 
+that control by requiring some form of user consent, 
+such as the install-time permissions in the Android 
+operating system. Unfortunately, many users lack the 
+information and expertise needed to make informed 
+decisions. The proliferation of app stores beyond 
+phones and browsers to cars, watches, and more will 
+only exacerbate this problem. 
+
+We propose a marketplace that employs user ratings for 
+app permissions as a mechanism to inform users about 
+the potential risks of these permissions. This allows 
+users with opinions and concerns about app permissions 
+to share their views with other users. This thesis will 
+design and build such a marketplace. It will use 
+crowdsourcing to design the interface and to acquire 
+ratings for apps. It will investigate how to customize 
+the marketplace to make it better suited to each user. 
+
+Along with building the marketplace, this thesis will 
+also examine how user ratings are affected by external 
+factors such as the brand of the app, and, in the case 
+of crowdsourced ratings, how much the workers were paid, 
+to better understand how users understand the permissions.
+
+\end{abstract}
+
+
 \section{Introduction}
 
-Apps---third-party programs with a clean installation model and
+Apps---third-party programs with a simple installation model and
 restricted permissions---have become ubiquitous 
 \cite{gplay-50-billion, apple-50-billion}.
 The app model is most commonly associated with smartphones, 
@@ -68,8 +104,8 @@ systems, smartwatches (such as the Pebble),
 home automation (like Microsoft's HomeOS \cite{ms-homeos}),
 and cars (such as \emph{iOS in the Car} \cite{cars-apple} and Android's 
 partnership with Audi, GM, and Honda \cite{cars-google}).
-Most app ecosystems are also supported by a ``store'' or
-``marketplace''---a central repository that
+Most app ecosystems are also supported by a \emph{store} or
+\emph{marketplace}---a central repository that
 enables users to search for, browse,
 investigate, and install apps on their devices. 
 
@@ -83,13 +119,14 @@ risks to user security and privacy.
 %http://www.esecurityplanet.com/views/article.php/3928646/Top-10-Android-Security-Risks.htm
 %Esecurity blog post discussing the top ten risks to Android user
 Some of these risks are malware apps, or apps that highjack
-over-provisioned apps to perform malicious operations. This is a topic
+over-provisioned apps (those that request more permissions than they need)
+to perform malicious operations. This is a topic
 of extensive research 
 \cite{droidrisk-2013, android-repackaged-CODASPY12, comDroid-MOBISYS11}, 
 but does not address a different,
 important problem: \emph{how to help users make informed privacy and
   security decisions about apps based on the permissions that the apps
-  demand}.
+  require}.
 
 The permission models and their presentation vary across manufacturers
 (Fig.~\ref{permsOSs} shows iOS, Windows 8, and Android). Android and
@@ -101,7 +138,7 @@ process; Windows lacks an approval step (permissions are listed on the
 app's page in the marketplace, and consent is presumably assumed when
 the user installs the app). In contrast, iOS uses a ``dynamic''
 approach: permissions are not listed explicitly; instead, users must
-approve access to permissions when an app tries to use them.
+approve access to permissions as an app tries to use them.
 
 \begin{figure*}[ht]
 \centering
@@ -113,8 +150,8 @@ approve access to permissions when an app tries to use them.
 \end{figure*}
 
 There are advantages and disadvantages to each approach. Nevertheless,
-this proposal falls firmly in the static model. For one thing, only by
-seeing all permissions can users reason about their potential
+this proposal falls firmly in the static model. For one thing, only in 
+knowing all permissions can users reason about their potential
 combinations. More importantly, we believe that asking for permissions
 during execution will often result in consent that might not otherwise
 have been given, because users are likely to grant whatever appears
@@ -145,15 +182,14 @@ needs.\footnote{Sometimes, seemingly unnecessary permissions can
 is greatly exacerbated by continuously growing manifests.
 
 When expressed loudly and emphatically, user opinion about privacy can
-sway developers. A recent incident with Avis illustrates a (sadly,
+sway developers. An incident with Avis illustrates a (sadly,
 rare) success. Avis added ``List of Running Apps'' to the permissions
 required by their Android app. Users protested the change in the
-reviews, with numerous comments like, ``I refuse to update and will
+reviews, with numerous comments such as, ``I refuse to update and will
 likely uninstall until you can justify the need to access my `Running
 Apps'.'' In response to the backlash, Avis removed the offending
-permission, and the newest version of their app (as of January 2,
-2014) does not require it. Avis states on their app's Google Play
-page:
+permission in later versions of the app. Avis explained the removal on their app's Google Play
+page, stating:
 \begin{quote}
   We've updated the permissions in this version to not require List of
   Running Apps. We had that in place to help analyze and improve app
@@ -177,13 +213,10 @@ analyses).
 \section{Preparatory Work}
 \label{sec-prep-work}
 
-There are multiple ways to deploy user ratings of permissions. One is
+We would like to deploy user ratings of permissions
 through an app store that uses these ratings to sort
-apps. The other is through an app that helps users decide
-which individual permissions to turn on and off. We discuss these
-models in more detail in Sec~\ref{subsec-the-apps}.
-
-In order for either model to work, however, it must have user
+apps. We discuss this marketplace in Sec~\ref{subsec-the-apps}.
+In order for such a marketplace to work, however, it must have user
 ratings. This presents a chicken-or-egg problem: In order to get users
 to employ systems that show ratings, there must already be present
 ratings that offer some value to the user; but users would have to be
@@ -196,7 +229,7 @@ crowdsourcing seemed a natural fit. However, crowdsourcing via
 platforms like Mechanical Turk also raises various concerns. Will
 reviewers take the rating task seriously? Will they give ratings that
 are actually distinct enough to reveal differences? Will they rate the
-permissions contextually? This last point is subtle: permissions are
+permissions in the context of a given app? This last point is subtle: permissions are
 not inherently ``good'' or ``bad'', but acquire meaning in the context
 of the app's intended purpose.\footnote{For example, we
   downloaded an app that helped turn on and off individual permissions
@@ -213,7 +246,7 @@ these questions:
 \item What are some factors that might affect how users perceive and rate 
 app permissions?
 \end{itemize}
-We deployed a series of studies on Amazon's Mechanical Turk. We chose
+We deployed a series of studies on Amazon's Mechanical Turk. We used
 Mechanical Turk because it can be very cost effective, and has become
 a common platform for academic research, which gave us guides of how
 to best use it \cite{reseach-mturk-BRM12, mturk-data-quality-PPS11}. 
@@ -257,14 +290,14 @@ compare within a domain, we focused on the weather apps. Across the
 ten apps, a total of thirteen permissions were used. These were rated
 as shown in Fig.~\ref{weatherratings}.  Although the approval rate for
 every permission was over 50\%, approval varied from 58.8\% to
-82.5\%. This range of ratings suggests that users were actually
+82.5\%. The range of ratings suggests that users were actually
 distinguishing between the permissions (not treating them all
 uniformly, which might be another indication of not taking the rating
 task seriously or not understanding it); we also found correspondence
 between their ratings and their textual comments.
 
-To answer our third question, we looked only at Facebook, Gmail,
-Pandora, and Angry Birds.  We used these same basic surveys, but
+To investigate factors that might affect user ratings, we looked only at Facebook, Gmail,
+Pandora, and Angry Birds.  We used the same basic surveys, but
 varied specific conditions in the survey. The conditions we created
 were: asking the user if they would download the app before or after
 they were asked to rate the permissions; how the user discovered the
@@ -276,7 +309,8 @@ instances of the app's name with a generic name. For example, GMail
 became MongogoMail.  Additionally, we changed any obvious identifiers,
 so the pigs and birds from Angry Birds became warriors and invaders.
 
-Varying where users were asked whether they would download the app (either before or after rating the permissions) was
+Varying where users were asked whether they would download the app 
+(either before or after rating the permissions) was
 meant to investigate whether users were more or less likely to
 download an app if they had been primed to think about privacy by
 rating the permissions. We found that there was no significant change
@@ -343,7 +377,7 @@ Sec~\ref{subsec-analyzing-ratings} propose
 some more speculative research.  We discuss evaluation of all these
 proposals in Sec~\ref{sec-eval}.
 
-\subsection{The Apps}
+\subsection{The App}
 \label{subsec-the-apps}
 
 The primary goal of our proposed work is to give end users better tools to make decisions
@@ -986,7 +1020,7 @@ We anticipate the semesters being divided as
 follows:
 \begin{description}
 
-\item[Semester 1 (Summer 2014)]
+\item[Term 1]
 During the first semseter we will complete studies on the user interface design
 (Sec~\ref{subsec-perm-ui}). Additionally, we will design a method for aggregating 
 permission-level ratings in to an app-level rating, and design an iconography
@@ -997,11 +1031,11 @@ This will allow us to build prototypes of the
 apps (Sec~\ref{subsec-the-apps}). We will also gather ratings for 
 approximately 1000 apps to seed our prototype (Sec~\ref{subsec-gather-ratings}).
 
-\item[Semester 2 (Fall 2014)]
+\item[Term 2]
 During this semeseter we will investigate how branding and other factors
 influence user ratings (Sec~\ref{subsubsec-branding}.
 
-\item[Semester 3 (Spring 2015)] 
+\item[Term 3] 
 During this semester we will reach out to app developers to discuss
 how to make their apps meet their users' privacy needs 
 (Sec~\ref{subsubsec-dev-comm}). This will entail
