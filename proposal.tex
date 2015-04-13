@@ -64,6 +64,36 @@
 
 \begin{abstract}
 
+Apps use access to hardware resources and sensitive 
+user data to enable users to customize their devices. 
+Because these apps are usually written by untrusted 
+third-parties, they become significant attack vectors 
+on users security and privacy. To protect themselves, 
+users need to be able to control apps’ access to 
+sensitive resources. Most systems with apps give users 
+that control by requiring some form of user consent, 
+such as the install-time permissions in the Android 
+operating system. Unfortunately, many users lack the 
+information and expertise needed to make informed 
+decisions. The proliferation of app stores beyond 
+phones and browsers to cars, watches, and more will 
+only exacerbate this problem. 
+
+We propose a marketplace that employs user ratings for 
+app permissions as a mechanism to inform users about 
+the potential risks of these permissions. This allows 
+users with opinions and concerns about app permissions 
+to share their views with other users. This thesis will 
+design and build such a marketplace. It will use 
+crowdsourcing to design the interface and to acquire 
+ratings for apps. It will investigate how to customize 
+the marketplace to make it better suited to each user. 
+
+Along with building the marketplace, this thesis will 
+also examine how user ratings are affected by external 
+factors such as the brand of the app, and, in the case 
+of crowdsourced ratings, how much the workers were paid, 
+to better understand how users understand the permissions.
 
 \end{abstract}
 
@@ -1030,26 +1060,24 @@ with a mechanism to make informed decisions about apps.
 
 \section{Proposed Work}
 
-We intend to gather user ratings of app permissions, create apps to present these ratings
+We intend to gather user ratings of app permissions, create 
+an app to present these ratings
 to users (and obtain new ratings from them), and study factors that
 affect how people perceive the reasonableness of permissions in
 different apps. Our primary means of disseminating ratings will be
-a pair of apps, both of which will incorporate the ratings we
-garner. One app will use permission ratings as a means for sorting
-apps (thereby giving priority to the least offensive apps),
-while the other will help users turn individual permissions on and
-off. We discuss these apps in Sec~\ref{subsec-the-apps} and focus on 
-their user interface in Sec~\ref{subsec-perm-ui}. In Sec~\ref{subsec-gather-ratings} 
+an app which will use permission ratings as a means for sorting
+apps (thereby giving priority to the least offensive apps). 
+We discuss this app in Sec~\ref{subsec-the-apps}. 
+In Sec~\ref{subsec-gather-ratings} 
 we discuss our plans to obtain ratings at scale. In
-Sec~\ref{subsec-app-selection} we talk about avenues for personalization, and in
-Sec~\ref{subsec-analyzing-ratings} propose
-some more speculative research.
+Sec~\ref{subsec-app-selection} we talk about avenues for personalization 
+and discuss how developers could use the permission ratings.
 
 \subsection{The App}
 \label{subsec-the-apps}
 
 The primary goal of our proposed work is to give end users better tools to make decisions
-about their privacy. We will do this directly by building and app, designed for the Android 
+about their privacy. We will do this directly by building an app, designed for the Android 
 operating system, that can be installed 
 and utilized by end users. We choose to build atop Android for two reasons.
 First, Android is a widely use operating system: according to Nielsen 
@@ -1061,7 +1089,7 @@ Secondly, the Android permission model forces apps to explicitly state which per
 they require to run, which allows us to programmatically extract the permissions for each 
 app, making it much easier to evaluate the permissions. 
 
-\paragraph{The Privacy-Aware App Marketplace}
+\paragraph{A Privacy-Aware App Marketplace}
 \label{subsubsec-privacy-store}
 
 An app store offers users a way to search, examine, and download
@@ -1162,7 +1190,7 @@ system version they use on their device. Users could, of course, lie
 about this, but it may help us to catch users who simply did not read
 our requirements.
 
-\subsection{App Selection: Putting the Ratings to Work}
+\subsection{Putting the Ratings to Work}
 \label{subsec-app-selection}
 
 The permission ratings may be useful in helping users to choose apps, but
@@ -1192,17 +1220,12 @@ These other users could be trusted friends or family with stronger
 computing or security knowledge (a stereotypical example of this is a
 young adult helping their less comfortable parents or grandparents with technology).
 
-\subsection{Analyzing Privacy Ratings}
-\label{subsec-analyzing-ratings}
-
-The user ratings of app permissions will constitute a corpus of 
-data about how users think about privacy, and how they use it to make decisions.
-Identifying and analyzing trends and patterns in this data may give us 
-information that we can use to better understand and meet user privacy needs.
 
 \subsubsection{Communicating With Developers}
 \label{subsubsec-dev-comm}
 
+The user ratings of app permissions will constitute a corpus of 
+data about how users think about privacy, and how they use it to make decisions.
 Thus far we have discussed how the ratings can be helpful to users, but
 they can also be a valuable resource for developers. The ratings can tell
 developers how users are perceiving their app and any trepidations users
