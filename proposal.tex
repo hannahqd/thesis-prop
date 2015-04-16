@@ -241,9 +241,19 @@ informed user decisions and creates accountability of a developer's intent.
 
 We would like to deploy user ratings of permissions
 through an app store that uses these ratings to sort
-apps. We discuss this marketplace in Sec~\ref{subsec-the-apps}.
-In order for such a marketplace to work, however, it must have user
-ratings. This presents a chicken-or-egg problem: In order to get users
+apps. For the marketplace to be useful, it needs to have
+user ratings, and it must present those ratings to users in
+an easy-to-understand way. In Sec~\ref{subsec-seeding} I will 
+discuss how to gather ratings to seed the marketplace so that 
+it can be immediately useful to users, and in Sec~\ref{subsec-perm-ui}
+I will show how I designed an interface to present these ratings 
+to end users. I will discuss future work on the marketplace in 
+Sec~\ref{subsec-the-apps}.
+
+\subsection{Seeding the Marketplace}
+\label{subsec-seeding}
+Because the marketplace relies on user ratings, it presents 
+a chicken-or-egg problem: In order to get users
 to employ systems that show ratings, there must already be present
 ratings that offer some value to the user; but users would have to be
 using a rating app already in order for it to collect user
