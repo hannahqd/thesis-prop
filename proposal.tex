@@ -1,4 +1,7 @@
 \documentclass[11pt]{article}
+%\documentclass[11pt,oneside,openany]{book}
+%\usepackage[margin=1in]{geometry}
+%\usepackage{prelude}
 
 \usepackage[hyphens]{url}
 \usepackage[implicit=true,%
@@ -45,13 +48,20 @@
 
 \begin{document}
 
+%\author{Hannah Quay-de la Vallee}
+%\title{By the People, For the People: \\Community Ratings for App Privacy \\ \ \\ Thesis Proposal}
+%\date{May 19, 2015}
+
+%\maketitle
+
 \setcounter{page}{1}
 \pagestyle{empty}
 \hypersetup{pageanchor=false}
 
 \begin{center}
 {\Large By the People, For the People:\\
-  Community Ratings for App Privacy}
+  Community Ratings for App Privacy\\ \ \\}
+  Hannah Quay-de la Vallee
 \end{center}
 
 \smallskip
@@ -69,11 +79,11 @@ user data to enable users to customize their devices.
 Because these apps are usually written by untrusted 
 third-parties, they become significant attack vectors 
 on users security and privacy. To protect themselves, 
-users need to be able to control apps’ access to 
-sensitive resources. Most systems with apps give users 
-that control by requiring some form of user consent, 
-such as the install-time permissions in the Android 
-operating system. Unfortunately, many users lack the 
+users need to be able to control apps' access to 
+sensitive resources. Most systems thus give users 
+the impression of control by requiring some form of 
+consent, such as the install-time permissions on Android. 
+Unfortunately, many users lack the 
 information and expertise needed to make informed 
 decisions. The proliferation of app stores beyond 
 phones and browsers to cars, watches, and more will 
@@ -91,9 +101,9 @@ the marketplace to make it better suited to each user.
 
 Along with building the marketplace, this thesis will 
 also examine how user ratings are affected by external 
-factors such as the brand of the app, and, in the case 
-of crowdsourced ratings, how much the workers were paid, 
-to better understand how users understand the permissions.
+factors such as the brand of the app, and how the ratings
+can help users make better selections and developers 
+to meet user needs.
 
 \end{abstract}
 
@@ -108,7 +118,7 @@ Apps have become pervasive
 in consumers' lives 
 \cite{gplay-50-billion, apple-50-billion}.
 Most commonly associated with smartphones and tablets, 
-such as iPhones and Android handsets, the app model now has much 
+such as iPhones, iPads and Android devices, the app model now has much 
 wider adoption, appearing in a variety of domains,
 such as browsers (in the form of extensions), PC operating 
 systems, smartwatches (such as the Pebble and the Apple Watch), 
@@ -117,7 +127,7 @@ and cars.
 %TODO: New citations (like Microsoft's HomeOS \cite{ms-homeos}) 
 %(such as \emph{iOS in the Car} \cite{cars-apple} and Android's 
 %partnership with Audi, GM, and Honda \cite{cars-google}).
-Most app ecosystems are supported by a
+Most app ecosystems are supported by a store or
 \emph{marketplace}---a central repository that
 enables users to search for, browse,
 investigate, and install apps on their devices. 
@@ -127,14 +137,14 @@ of technical ability to customize their devices.
 However,  
 because of the amount of user information associated with these 
 devices, installing third-party apps presents 
-risks to user security and privacy. Some of these risks are malware apps, or 
+risks to user security and privacy. Some of these risks are malware apps or 
 apps that highjack legitimate apps
-to perform malicious operations. This is a topic
+to perform malicious operations. These problems are the topic
 of extensive research 
 \cite{droidrisk-2013, android-repackaged-CODASPY12, comDroid-MOBISYS11}, 
 %TODO: Update citations
-but does not address a different,
-important problem: \emph{how to help users make informed privacy and
+but that research does not address a different,
+important problem: \emph{how can systems help users make informed privacy and
   security decisions about apps based on the permissions that the apps
   require}.
 
@@ -152,20 +162,21 @@ Android takes a ``static'' approach, in that apps are given a
 permissions at installation time, and may use any of them at will at runtime.
 Users must approve these during the installation
 process. In contrast, iOS uses a ``dynamic''
-approach: permissions are not listed explicitly; instead, users must
+approach: permissions are not listed approved up-front; instead, users must
 approve access to permissions as an app tries to use them.
 
-There are advantages and disadvantages to each approach. Nevertheless,
+There are advantages and disadvantages to each approach, but
 this proposal will use the static model. For one thing, only in 
 knowing all permissions can users reason about their potential
-combinations. More importantly, I believe that asking for permissions
+combinations. Furthermore, I believe that asking for permissions
 during execution will often result in consent that might not otherwise
 have been given, because users are likely to grant whatever appears
-necessary to complete a task \cite{phisher-wanings-SIGCHI08}. In contrast, the static
+necessary to complete a the task at hand \cite{phisher-wanings-SIGCHI08}. 
+In contrast, the static
 model, in principle, enables a more contemplative and
 informed approach to choosing apps based on permissions.
 
-In theory, permissions give users control over their 
+In theory, requiring users to approve permissions gives them control over their 
 data, but in practice users often do not have the 
 information or expertise to meaningfully consent to an 
 app's required permissions. Users may not
@@ -178,7 +189,7 @@ networking app but may be utterly
 unsuitable for a medical monitoring app. 
 For those users who do have opinions about permissions, 
 there is no structured method to
-communicate their view---comments to this effect are often found in
+communicate their thoughts---comments to this effect are often found in
 the ratings of apps, but these comments can be difficult for other
 users (especially uninformed ones who would like guidance), and even
 developers, to find. In turn, developers have no structured way to
@@ -196,7 +207,7 @@ respond to such comments and justify their apps' needs.
 %  \cite{septa-perm-explain}.} Finally, this entire problem
 %is greatly exacerbated by continuously growing manifests.
 
-I are building a crowdsourced app marketplace that allows users to review
+I am building a crowdsourced app marketplace that allows users to review
 each of an app's individual \emph{permissions}, rather than just the app's functionality. 
 It also allows developers to
 explain why they requested a permission---sometimes due to the
@@ -222,7 +233,7 @@ informed user decisions and creates accountability of a developer's intent.
 %  performance, but removed it due to your voiced concerns.
 %\end{quote}
 
-%Our goal is to make such successes commonplace. I intend to leverage
+%My goal is to make such successes commonplace. I intend to leverage
 %the willingness people already demonstrate to provide ratings, and
 %their familiarity with mechanisms like rating systems, by building systems to rate
 %\emph{permissions}. These ratings then serve as a guidepost to other
@@ -239,9 +250,10 @@ informed user decisions and creates accountability of a developer's intent.
 \section{Preparatory Work}
 \label{sec-prep-work}
 
-I would like to deploy user ratings of permissions
-through an app store that uses these ratings to sort
-apps. For the marketplace to be useful, it needs to have
+My goal is to build a marketplace that employs user-provided 
+ratings to sort apps, and displays these ratings to other users 
+to assist them in their app selection process. For such a marketplace
+to be useful, it would need a couple of things:  it must have
 user ratings, and it must present those ratings to users in
 an easy-to-understand way. In Sec~\ref{subsec-seeding} I will 
 discuss how to gather ratings to seed the marketplace so that 
@@ -257,20 +269,20 @@ a chicken-or-egg problem: In order to get users
 to employ systems that show ratings, there must already be present
 ratings that offer some value to the user; but users would have to be
 using a rating app already in order for it to collect user
-ratings. I therefore wanted to know if there was another way to
+ratings. I therefore wanted to investigate other ways to
 acquire ratings for the marketplace.
 
 Because I would prefer to have a large number of ratings,
 crowdsourcing seemed a natural fit. However, crowdsourcing via
-platforms like Mechanical Turk also raises various concerns. Will
+platforms like Amazon's Mechanical Turk also raises various concerns. Will
 reviewers take the rating task seriously? Will they give ratings that
 are actually distinct enough to reveal differences? Will they rate the
 permissions in the context of a given app? This last point is subtle: permissions are
 not inherently ``good'' or ``bad'', but acquire meaning in the context
-of the app's intended purpose.\footnote{For example, we
+of the app's intended purpose.\footnote{For example, my advisor
   downloaded an app that helped turn on and off individual permissions
   on the basis of perceived threat. However, the threat was not
-  specific to the app. Thus, on the very first app I examined---that
+  specific to the app. Thus, on the very first app he examined---that
   for Google+---the permission marked as most dangerous was that to
   share to social streams\dots which is the very point of the app.}
 
@@ -282,11 +294,11 @@ these questions:
 \item What are some factors that might affect how users perceive and rate 
 app permissions?
 \end{itemize}
-I deployed a series of studies on Amazon's Mechanical Turk. I used
-Mechanical Turk because it can be very cost effective, and has become
-a common platform for academic research, which gave me guides of how
+I deployed a series of studies on Mechanical Turk. I chose
+Mechanical Turk because it can be cost effective, and has become
+a common platform for academic research, which provided a body of work on how
 to best use it \cite{reseach-mturk-BRM12, mturk-data-quality-PPS11}. 
-Our study presented users with surveys that
+My study presented subjects with surveys that
 described an app, preceded by a motivating paragraph asking
 them to imagine that they came by this app in some way and needed an
 app of that functionality.  I used fourteen apps: Facebook, GMail,
@@ -297,20 +309,21 @@ whether they would download the app, and to rate each of the app's
 permissions as either ``acceptable'' or ``unacceptable,'' and were
 given an optional text box to explain each of their ratings.
 
-Once I had workers completing tasks, I needed to ensure that the
-users were real humans who were actually answering the questions we
-asked. I manually reviewed the responses in the optional text boxes
+Once I had subjects completing tasks, I needed to ensure that they 
+were real humans who were actually answering the questions I
+asked. I manually reviewed the responses from the text boxes
 that allowed users to explain their ratings. Overall, I found that
-users did provide explanations for their ratings despite this being
+many subjects did provide explanations for their ratings despite this being
 optional. Furthermore, their responses were relevant to the
 permissions being discussed, indicating that the responses were from
 real people thinking about the task. Because these were preliminary
 studies, I did not do any significant analysis on the text answers,
 but I will in proposed work. Additionally, I will want to further
-validate our Mechanical Turk results by comparing them with results
-from other populations. There are also other measures I will want to
-use to increase confidence in our Mechanical Turk data, such as test
-questions.
+validate my Mechanical Turk results by comparing them with results
+from other populations such as students and security experts. 
+There are also other measures I will
+use to increase confidence in my Mechanical Turk data, such as test
+questions (like ``which Android phone do you have?'').
 
 \begin{figure*}[t]
 \centering
@@ -334,26 +347,27 @@ between their ratings and their textual comments.
 
 To investigate factors that might affect user ratings, I looked only at Facebook, Gmail,
 Pandora, and Angry Birds.  I used the same basic surveys, but
-varied specific conditions in the survey. The conditions I created
-were: asking the user if they would download the app before or after
-they were asked to rate the permissions; how the user discovered the
+varied specific conditions in the survey. The conditions 
+were: asking half the subjects if they would download the app before 
+they were asked to rate the permissions and asking the other half after; 
+varying how the subject supposedly discovered the
 app (on recommendation from a colleague, because it was a featured app in
 the app store, or because it was highly rated in the app store); and
-whether the app was ``brand-name'' or generic. To create the generic
+varying whether the app was ``brand-name'' or generic. To create the generic
 apps, I reused the Play Store descriptions of the apps but replaced all
 instances of the app's name with a generic name. For example, GMail
 became MongogoMail.  Additionally, I changed any obvious identifiers,
 so the pigs and birds from Angry Birds became warriors and invaders.
 
-Varying where users were asked whether they would download the app 
+Varying where subjects were asked whether they would download the app 
 (either before or after rating the permissions) was
 meant to investigate whether users were more or less likely to
 download an app if they had been primed to think about privacy by
 rating the permissions. I found that there was no significant change
-in either the percentage of users who would download the apps, or the
+in either the percentage of subjects who would download the apps, or the
 ratings the provided.
 
-Varying how the user was asked to imagine they discovered the app
+Varying how the subject was asked to imagine they discovered the app
 could affect their opinion of the permissions, or their willingness to
 download the app. In this case, only Facebook showed any interesting
 results: respondents were less likely to install the app if it
@@ -373,8 +387,10 @@ findings suggest that branding may be an important part of users'
 feelings about an app. However, these results also raise questions
 about how privacy and functionality interact in user decisions. Are
 people less approving of these generic apps because they think they
-are unsafe, or because they feel they will not have access to their
-existing email and social network accounts?
+are unsafe, or is their perception of the app altered because they 
+feel they will not have access to their
+existing email and social network accounts, 
+and so don't see the permissions as worth the risk?
 
 To separate access concerns from privacy concerns, I did a follow-up
 study asking subjects to evaluate an app that was an
@@ -386,13 +402,13 @@ percentage of users said they would use Gmore!. This suggests that
 subjects were concerned about the privacy of the apps, not just their
 functionality.
 
-Our preliminary studies suggest that I will be able to gather
+My preliminary studies suggest that I will be able to gather
 meaningful ratings from Mechanical Turk. I believe this is vital
 to seed data in a privacy-centric marketplace, and hence attract users
-to it. Further, our early examination of these ratings 
+to it. Further, my early examination of these ratings 
 suggests insights into how users think about their privacy, and reveals
 factors that affect their opinions. These insights may be useful for
-further development of our marketplace, and may also be more broadly
+further development of my marketplace, and may also be more broadly
 useful to the privacy research community.
 
 \subsection{The Permission User Interface}
@@ -400,7 +416,7 @@ useful to the privacy research community.
 
 Because I want to communicate rating information to users,
 the interface for displaying the ratings is another critical component of 
-our system. The interface should help users understand the 
+my system. The interface should help users understand the 
 riskiness of individual permissions so they can make \emph{informed}
 decisions without requiring significant
 effort. Ideally, it would be 
@@ -409,14 +425,14 @@ much direction. \reffig{grade-perms} is an example of what such an interface
 might look like.
 
 Designing such an interface proved surprisingly subtle. 
-Our original designs, based on existing security 
+My original designs, based on existing security 
 metaphors, failed to convey the desired information.
 Indeed, I found that some of them \emph{actively 
 mislead users} (\refsec{sec-ui-design}).
 I also unearthed some common patterns of interface
 confusion. In the end I found three designs that appear to work, and
 conducted a large user study to confirm this
-(\refsec{s-sec-largescale}). One of these designs will be used in our new
+(\refsec{s-sec-largescale}). One of these designs will be used in the new
 marketplace.
 
 \subsubsection{Exploratory Interface Design}
@@ -452,8 +468,8 @@ to be developed by the (also fictional) company ApexApps.
 I chose a pharmacy locator app because it 
 could pose a privacy risk to a user (if, for example, it stored a list
 of the user's medications for refill reminders), but 
-would be unlikely to offend any of
-our subjects. Each mock-up used different iconography to
+would be unlikely to offend any 
+subjects. Each mock-up used different iconography to
 present the user permission ratings (which were also fake), but the permissions
 and their rating values were the same or comparable across interfaces. 
 
@@ -497,6 +513,8 @@ important that users understand the \emph{source}
 of the ratings. 
 I found that most of the interfaces failed to
 convey to subjects that the ratings were from other Android users.
+This is therefore something that should be considered in the 
+design of the complete marketplace.
 
 \paragraph{Stars}
 \label{s-sec-stars}
@@ -513,8 +531,9 @@ functionality ratings. It is therefore a natural basis for experimentation.
 
 Possibly due to the ubiquity of five-star ratings, 
 subjects seemed to have preconceptions 
-about the meaning and source of the ratings. This was an advantage 
-in that users correctly understood the source of
+about the meaning and source of the ratings. This proved to be both an 
+advantage and a disadvantage. On the positive side, 
+subjects correctly understood the source of
 the ratings (other Android users), and that more stars corresponded to a 
 better rating.
 
@@ -538,7 +557,7 @@ expressing that the ratings are about privacy.
 \label{s-sec-locks}
 
 One symbol I used place of stars was locks, a natural visual metaphor for protection.
-Our original lock design used yellow locks over a grey background:
+My original lock design used yellow locks over a grey background:
 % \,\protect\includegraphics[height=10pt]{img/TinyLock1.png}}
 \label{ss-sec-locks-r1}
 \begin{center}
@@ -578,7 +597,7 @@ Though these changes helped curtail the better-or-worse phenomenon, they did not
 eliminate it entirely. 
 
 Because the better-or-worse phenomenon was at least partially caused 
-by confusion about whether more or fewer icons was better, we
+by confusion about whether more or fewer icons was better, I 
 replaced the out-of-five system with 
 a single lock next each permission, and relied on 
 color and open-ness to convey the rating:
@@ -616,7 +635,8 @@ were an aggregate of community opinions.)
 \begin{center}
 \includegraphics[width=.5\linewidth]{candidate-img/locks/locksR4.png}
 \end{center}
-The final lock interface was an improvement, 
+The final lock interface was an improvement over its 
+predecessors, 
 but some subjects still thought the locks indicated 
 availability. Since locks 
 %The final lock interface was better than its 
@@ -631,8 +651,8 @@ I eliminated this interface family.
 \paragraph{Eyes}
 \label{s-sec-eyes}
 
-Continuing our exploration of other symbols in an out-of-five rating, this 
-interface used eyes in the place of stars. Our first icon, which
+Continuing my exploration of other symbols in an out-of-five rating, this 
+interface used eyes in the place of stars. My first icon, which
 used a no-smoking-style circle-and-slash over an eye, 
 proved too difficult to see at small scale
 (some subjects thought it was a watch). I thus tried different-color eyes:
@@ -640,8 +660,8 @@ proved too difficult to see at small scale
 \begin{center}
 \includegraphics[width=.5\linewidth]{candidate-img/eyes/eyesR2.png}
 \end{center}
-The more dangerous a permission, the more red eyes it had; the more
-benign, the more grey.
+The more dangerous a permission was, the more red eyes it had; the more
+benign it was, the more grey eyes it had.
 Additionally, the red centers had 
 the appearance of a red recording light as seen on a camera.
 
@@ -654,14 +674,15 @@ I tried various redesigns such as grouping permissions by rating with a
 text header (as 
 in \refsec{ss-sec-locks-r4}) and introducing a yellow eye category. Though these changes helped, 
 percentage bars (\refsec{ss-sec-pbars-r4}) and traffic signs 
-(\refsec{ss-sec-traffic-r4}) were better understood by subjects,
+(\refsec{ss-sec-traffic-r4}) were still better understood by subjects,
 so I disqualified this interface.
 
 \subsection{Guy Fawkes Masks}
 \label{s-sec-masks}
 
-I also explored out-of-five ratings using 
-Guy Fawkes (or \emph{V for Vendetta}) masks, which have become a popular symbol of personal
+I also explored out-of-five ratings using Guy Fawkes masks, which 
+were popularized by the graphic novel \emph{V for Vendetta} and its
+film adaptation, and have since become a symbol for personal
 privacy and activism.
 % \,\protect\includegraphics[height=12pt]{img/TinyMasks.png}}
 \label{ss-sec-masks-r1}
@@ -671,7 +692,7 @@ privacy and activism.
 Unfortunately, subjects felt the
 rating showed how well protected their information was from the government 
 (possibly due to the ``hacktivist'' group Anonymous' adoption of the mask as a symbol). 
-This is not a protection a permissions system can provide. Because it is dangerous for an
+As this is not a protection a permissions system can provide and it is dangerous for an
 interface to suggest protections that do not exist, I eliminated all
 variations of this design.
 
@@ -689,11 +710,11 @@ they did not approve.
 \begin{center}
 \includegraphics[width=.5\linewidth]{candidate-img/checkboxes/checkboxesR1.png}
 \end{center}
-Unfortunately, I discovered a very significant misconception:
-although the red X was meant to indicate a potentially invasive permission, 
+Unfortunately, I discovered a very significant confusion: in this interface
+the red X was meant to indicate a potentially invasive permission, but 
 subjects thought it meant that the given permission had been \emph{disabled}. This
-extreme case of the better-or-worse phenomenon is 
-alarming. I therefore eliminated this interface without attempting to 
+is an extreme case of the better-or-worse phenomenon and is an 
+alarming misconception. I therefore eliminated this interface without attempting to 
 redesign it.
 
 \paragraph{Grades}
@@ -743,7 +764,8 @@ Although the bars were effective, subjects' feedback on
 the traffic signs interface (\refsec{ss-sec-traffic-r3}) 
 revealed a potential pitfall: their comments suggested that subjects 
 perceived a green light as a signal to proceed without caution, which could 
-encourage users to download an app without considering the permissions at all. I were concerned the green bars 
+encourage users to download an app without considering the permissions at all. I 
+was concerned the green bars 
 could have the same over-soothing effect.
 
 To encourage caution in all cases, I modified the interface to use 
@@ -778,12 +800,13 @@ There were four variants:
 \end{center}
 The first two interfaces used only red 
 and green (with two variants: red on the left or red on the right),
-so the goodness of a rating was only indicated by the ratio of red to green.
+so the goodness of a rating was indicated only by the ratio of red to green.
 Unfortunately, subjects thought these bars were
 progress bars or ratings of the 
 permission's service quality.
 
-The second two interfaces used red, orange, yellow, and green, so the goodness of the permission
+The second two interfaces used red, orange, and yellow 
+along with the green, so the goodness of the permission
 was indicated both by the ratio of the warning color to green \emph{and} by the warning color
 used. As with the red-green interfaces, one of the interfaces had the green on the left (so 
 \includegraphics[height=8pt]{img/Bars4/RedYellowGreen/GreenYellowBar.png}\,,
@@ -797,20 +820,21 @@ other had the warning color on the left (like
 which I will call \emph{ROY-G} bars.
 
 
-Unlike the red-green
-bars, subjects still understood that the ratings were privacy related, and 
-which ratings were better and which were worse. One subject
+Unlike the red-green only
+bars, subjects still understood that the ratings were privacy related, and, 
+unlike the warning-color only bars, 
+they understood which ratings were better and which were worse. One subject
 said of the orange bar that ``It means to me that feelings about 
 this permission are mixed---about half of people think 
 it is acceptable and half think it is not 
-acceptable for this app to have that permission''. Thus we
+acceptable for this app to have that permission''. Thus I 
 subjected these interfaces to large-scale testing (\refsec{s-sec-largescale}). 
 
 \paragraph{Traffic Signs}
 \label{s-sec-traffic}
 
-The final set of interfaces used traffic markers, 
-an iconography suggested by a subject.
+The final set of interfaces I designed used traffic markers, 
+an iconography suggested by a subject from another interface.
 %``...a stop sign, caution sign, and a green light?''
 
 \label{ss-sec-traffic-r2}
@@ -845,7 +869,7 @@ the problem of an overly-soothing green light.
 Rather than simply changing the colors of
 the lights (which  
 could look jarringly different from actual traffic lights and thus confuse users), 
-the next interface used traffic signs: a red octagon
+the next interface used traffic \emph{signs}: a red octagon
 (mimicking a stop sign), an orange diamond, and a yellow circle. 
 Because the colors would be sparser in the interface (as they were only by the section 
 headers) warning fatigue was less of
@@ -859,12 +883,12 @@ in the large-scale testing (\refsec{s-sec-largescale}).
 \paragraph{Common Findings and Observations}
 \label{common-findings}
 
-The studies exposed two issues that arose in multiple 
+These studies exposed two issues that arose in multiple 
 interfaces. First, because Android is used in a range of 
 cultures, some metaphors may not be familiar or applicable to all users.
 For example, some countries 
 do not use a letter grades in their schools.
-Of our
+Of my
 interfaces, only the percentage bars do 
 not rely on an existing metaphor and so avoid this particular confusion.
 
@@ -872,11 +896,11 @@ The second common issue was the better-or-worse phenomenon,
 wherein the more negative a rating is, the more positive subjects interpreted 
 it to be. The net effect of this is alarming: The most dangerous permissions 
 appear to be the most harmless! This problem is 
-most troubling in the checkbox interface (\refsec{s-sec-checkbox}),
-where dangerous permissions were indicated by a red X. However, 
+most troubling in the checkbox interface (\refsec{s-sec-checkbox}). 
+There, dangerous permissions were indicated by a red X, but 
 subjects thought the X meant that the permissions had been disabled, and therefore 
 were \emph{completely innocuous}. Because of this phenomenon's dangerous nature, it greatly 
-influenced our design decisions, and our selection of interfaces to study further.
+influenced my design decisions, and my selection of interfaces to study further.
 
 
 
@@ -965,7 +989,7 @@ significantly better than chance:
 Note that these subjects had been given no explanation for the
 interface, so these results represent a worst-case baseline. 
 This would likely not occur in
-our privacy-focused app store where users would have 
+the privacy-focused app store where users would have 
 context for the ratings' meaning.
 
 After subjects answered the free-response questions, I informed them that 
@@ -1004,12 +1028,10 @@ These results suggest there is a user base for these ratings.
 As in the small-scale studies, I investigated whether subjects understood 
 that the ratings were from other Android users.
 During 
-our large-scale study, a plurality of subjects understood that they were from other 
+this large-scale study, a plurality of subjects understood that they were from other 
 Android users, but there was still confusion. 
 Although it would be ideal, it may not be possible to convey the 
-source of the ratings solely through an interface.
-I present our findings here, but will examine this problem further 
-in future work: 
+source of the ratings solely through an interface. 
 
 \begin{figure}[ht]
 \centering
@@ -1018,9 +1040,9 @@ in future work:
     \label{src-beliefs}
 \end{figure}
 
-This work suggests that users are 
+Over all, this study suggests that users are 
 concerned about their privacy but currently lack the tools 
-or expertise to control their own data and resources. Our 
+or expertise to control their own data and resources. My 
 marketplace's privacy ratings of permissions provide users
 with a mechanism to make informed decisions about apps.
 
@@ -1075,30 +1097,35 @@ I intend to gather user ratings of app permissions, create
 an app to present these ratings
 to users (and obtain new ratings from them), and study factors that
 affect how people perceive the reasonableness of permissions in
-different apps. Our primary means of disseminating ratings will be
+different apps. My primary means of disseminating ratings will be
 an app which will use permission ratings as a means for sorting
 apps (thereby giving priority to the least offensive apps). 
 I discuss this app in Sec~\ref{subsec-the-apps}. 
 In Sec~\ref{subsec-gather-ratings} 
-I discuss our plans to obtain ratings at scale. In
+I discuss my plans to obtain ratings at scale. In
 Sec~\ref{subsec-app-selection} I talk about avenues for personalization 
 and discuss how developers could use the permission ratings.
 
 \subsection{The App}
 \label{subsec-the-apps}
 
-The primary goal of our proposed work is to give end users better tools to make decisions
+The primary goal of my proposed work is to give end users better tools to make decisions
 about their privacy. I will do this directly by building an app, designed for the Android 
 operating system, that can be installed 
-and utilized by end users. I choose to build atop Android for two reasons.
-First, Android is a widely use operating system: according to Nielsen 
+and utilized by end users. (I will deploy the system as an app because 
+apps are designed to be easy to install, so it will be available even to users 
+with limited technical ability.) I choose to build atop Android for two reasons.
+First, Android is a widely used operating system: according to Nielsen 
 \cite{android-market-share}, a consumer research 
 company, as of August, 2013, 52\% of smartphones in the United
 States use Android, and its penetration in some other countries is
 even higher.
 Secondly, the Android permission model forces apps to explicitly state which permissions
 they require to run, which allows me to programmatically extract the permissions for each 
-app, making it much easier to evaluate the permissions. 
+app, making it much easier to evaluate the permissions. Additionally, 
+since they have to approve the permissions of every app they install, 
+most Android users have seen and interacted with permissions (even if they 
+do not fully understand them).
 
 \paragraph{A Privacy-Aware App Marketplace}
 \label{subsubsec-privacy-store}
@@ -1111,7 +1138,7 @@ permission information in to the search. I believe this hinders the
 user's ability to find privacy-conscious apps, because they have to
 look at the permissions for each app they are considering, and are
 heavily biased by the app \emph{quality} ratings (stars), which may
-have little correlation with permission-sensitivity. Our marketplace
+have little correlation with permission-sensitivity. My marketplace
 will allow users to search by privacy criteria instead: in other
 words, I will construct an app store that sorts apps primarily by
 quality but secondarily by privacy-sensitivity, so that the best apps
@@ -1121,19 +1148,20 @@ quality but secondarily by privacy-sensitivity, so that the best apps
 Google Play does try to inform users about permissions by offering a
 brief explanation of what each permission does. However, these
 explanations are not specific to the app, and so do not help
-users understand how the app might be using the permission. We
+users understand how the app might be using the permission. I 
 believe this is an important factor, because in many cases a
 permission that is perfectly legitimate for one app might be cause for
-alarm in another. For example, location information makes lots of
+alarm in another. For example, location information makes 
 sense for a weather app, but (absent other explanation) seems much
-more suspicious for a flashlight app. In contrast, our app will
-provide user ratings of each permission for each app (with, on demand,
-comments), as well as any responses or clarifications provided by the
+more suspicious for a flashlight app. In contrast, my app will
+provide user ratings of each permission for each app 
+as well as any responses or clarifications provided by the
 developers. Because these ratings are specific to the app, I believe
-they will enable users to arrive at an \emph{informed} decision about
-the permissions each app seeks.
+they will enable users to arrive at a more \emph{informed} decision about
+whether to install an app, given the permissions it requires.
 
-As added justification for this app, Felt et al.\ \cite{android-attention-SOUPS12} 
+Further highlighting the need for my type of marketplace, 
+Felt et al.\ \cite{android-attention-SOUPS12} 
 found that only 17\% of users surveyed looked at the permissions during
 their last installation. The authors suggest that the timing of
 permission presentation could contribute to the lack of attention paid
@@ -1145,15 +1173,16 @@ means permissions have been significantly accounted for \emph{before}
 users are required to make installation decisions.
 
 To lift ratings from an individual permission to an entire app
-requires some method of aggregation. In 
-Sec.~\ref{subsubsec-personalizing}, I propose that users
-can establish personal privacy profiles, which would effectively offer
-weights by which the permission ratings can be combined. Absent that, I will design a
+requires some method of aggregation. I will design a
 number of possible composition methods. One solution is to simply take
 an average over the individual permission ratings. Other options would
 be a sparklines-style composition where users could visually see the
 general level approval of an apps permissions, or allowing the
-community to rate the permissions that are most important for an app.
+community to rate the permissions that are most important for an app. 
+Additionally, in 
+Sec.~\ref{subsubsec-personalizing}, I propose that users
+can establish personal privacy profiles, which would effectively offer
+weights by which the permission ratings can be combined.
 
 It should be noted here that regardless of whether users of the
 marketplace are seeing ratings from Mechanical Turk workers or other
@@ -1164,51 +1193,52 @@ ratings provided by experts or the developers of the marketplace.
 \subsection{Gathering User Ratings}
 \label{subsec-gather-ratings}
 
-Ideally, the users of our systems will provide ratings for
+Ideally, the users of my marketplace will provide ratings for
 apps. However, 
-to bootstrap our systems, I will use Mechanical Turk to gather
-ratings. Based on several experiments, I find that I can obtain
+to bootstrap the app, I will use Mechanical Turk to gather
+ratings. In preliminary experiments, I found that I can obtain
 quality ratings for no more than \$0.30 per worker. Since about thirty
 ratings gives sufficiently strong reviews, I can rate each
 app for no more than \$10. 
 % TODO: Do I mention budget here?
-I have therefore budgeted money to
+My advisor and I have won a grant that  budgeted money to
 seed the store with ratings, both for the most popular apps overall,
 and for the most popular apps in select categories that people are
 likely to search for (e.g., weather, finance, etc.).
 
-This bootstrapping processes uses an ``offline'' model, in that we
-will accumulate these ratings so as to seed our apps before anyone
-sees them. In principle, however, these ratings could also be done
+This bootstrapping processes uses an ``offline'' model, in that I 
+will accumulate these ratings so as to seed the marketplace before anyone
+sees it. In principle, however, these ratings could also be done
 ``online'': that is, if a user is interested in a particular area, or
 even a particular app, they could request ratings, spawning fresh tasks for
-generating ratings on demand. The speed at which a user gets reviews
-depends on number of variables, such as the time of day and day of
-week, but I believe the most important variable---based on our
-experiments---is how much one is willing to pay for reviews. We
-therefore intend to post a series of tasks, staggered by time and
-cost, to construct an approximate valuation curve that indicates how
-much one needs to pay in return for obtaining quality reviews within a
-particular duration of time. In principle, this curve is a function
-that can be passed on to the user, who can decide how much they are
-willing to spend in return for how long they are willing to wait for
-reviews to be completed for their task.
+generating ratings on demand. 
+%The speed at which a user gets reviews
+%depends on number of variables, such as the time of day and day of
+%week, but most importantly---based on my
+%experiments---how much one is willing to pay for reviews. I 
+%will post a series of tasks, staggered by time and
+%cost, to construct an approximate valuation curve that indicates how
+%much one needs to pay in return for obtaining quality reviews within a
+%particular duration of time. In principle, this curve is a function
+%that can be passed on to the user, who can decide how much they are
+%willing to spend in return for how long they are willing to wait for
+%reviews to be completed for their task.
 
 In general, ratings will only be useful if they come from users with some
 familiarity with the app models.
-In our preparatory studies, I did not validate that respondents are
+In my preparatory studies, I did not validate that respondents are
 smartphone users (other than in the task description). In future
 studies, I will ask users a test question such as what operating
 system version they use on their device. Users could, of course, lie
-about this, but it may help me to catch users who simply did not read
-our requirements.
+about this, but it will help me to catch users who simply did not read
+my task requirements.
 
 \subsection{Putting the Ratings to Work}
 \label{subsec-app-selection}
 
 The permission ratings may be useful in helping users to choose apps, but
 they could be used to improve the user's privacy in other ways as well. They could
-also be useful to developers in understanding how users perceive their apps 
+also assist developers in understanding how users perceive their apps 
 and improve their apps based on that feedback.
 
 \paragraph{Personalizing the Marketplace}
@@ -1219,12 +1249,13 @@ an app suits their specific privacy needs. Because each user will have a differe
 set of privacy concerns, the store would be more useful if it was personalized
 to each user.
 
-Building privacy profiles for each user would allow users to see ratings from
-others with similar privacy concerns. Privacy profiles could be built either by 
+Building privacy profiles for each user would allow them to see ratings from
+others with similar privacy mindsets, and to rank apps according to their
+particular concerns. Privacy profiles could be built either by 
 analyzing the reviews a user leaves, or by explicitly surveying them about their
 privacy concerns. 
 
-In addition to ratings from people with similar concerns, users may want to get
+In addition to ratings from people with similar privacy philosophies, users may want to get
 ratings from people they trust. Allowing people to build off of their existing 
 social networks could give them greater confidence in the ratings. If users 
 establish an account within the marketplace, they could designate other trusted
@@ -1255,10 +1286,11 @@ if they explained to users \emph{why} the permission is required. In
 addition to helping users understand permissions, encouraging developers 
 to clarify their permissions may establish a culture of communication
 between users and developers. In a culture like this, an app that fails
-to explain its permissions may cause users to be more cautious about 
+to explain its permissions may raise red flags for users and cause them 
+to be more cautious about 
 installing it. 
 
-Because developers will likely not be aware of our marketplace and 
+Because developers will likely not be aware of my marketplace and 
 consequently the permission ratings, they will not be able to respond 
 to them. I will manually contact developers to call their attention
 to the ratings and explain how they may be able to improve their 
@@ -1277,7 +1309,7 @@ users are careful about
 performing certain tasks on their phones, they engage in risky behavior
 when it comes to installing apps. These
 authors do not present solutions for users, but 
-provide a foundation for our work.
+provide a foundation for my work.
 
 There are several systems that offer additional 
 security and privacy protections to Android users, such as 
@@ -1288,13 +1320,13 @@ for less technically adept users.
 \citet{dr-android-hide-SPSM12} also offer additional
 protections, but require developers to rewrite their
 apps to take advantage of them.
-Our interface is meant
+My interface is meant
 for presenting additional information, and so could work
 with the existing Android OS and apps, perhaps as a stand-alone app.
 
 \citet{android-repackaged-CODASPY12} and others have
 built systems that identify
-malware. This is orthogonal to the scope of our work, which
+malware. This is orthogonal to the scope of my work, which
 deals with communicating the privacy risks of \emph{legitimate} apps.
 
 There are also systems to detect misbehavior by apps (such as
@@ -1308,8 +1340,8 @@ understanding of Android permissions (although they are limited
 to permissions that cause visual differences in app behavior). 
 These works do not perform
 extensive studies of \emph{interfaces to present} their output, which
-is the focus of our work. In principle, their systems can be used to
-generate the rating information that our interface provides.
+is the focus of my work. In principle, their systems can be used to
+generate the rating information that my interface provides.
 
 \citet{nutrition-labels-SOUPS09} have also explored how to 
 present privacy information to users.
@@ -1332,19 +1364,20 @@ scores.
 
 \item[Summer 2015]
 During this term I will design a method for aggregating 
-permission-level ratings in to an app-level rating. To do
-this I will design several possible aggregation methods 
-(such as a weighted average) and user test them on Mechanical
+permission-level ratings in to an app-level rating. I will 
+design several possible aggregation methods (such as a 
+weighted average) and user test them on Mechanical
 Turk to determine which is the most understandable and most
-useful for users. This will allow me to sort apps by their privacy 
+helpful to users. This will allow me to sort apps by their privacy 
 rating as well as by their functionality rating.
 
 I will also gather ratings for approximately 1000 apps to seed 
-our prototype (Sec~\ref{subsec-gather-ratings}). I will pull these
-apps from the Google Play store by choosing the most popular apps
-overall as well as the most popular in various categories. After
-gathering ratings for these tasks from Mechanical Turk, I will 
-use these ratings to populate a database for our app.
+the marketplace (Sec~\ref{subsec-gather-ratings}). I will select these
+apps by choosing the most popular apps in various categories on 
+the Google Play store. I will extract the permission manifest and 
+description for each app to build Mechanical Turk tasks. I will 
+use these ratings from Mechanical Turk to populate a Postgres database 
+for my app.
 
 In addition to the Mechanical Turk ratings, I will also distribute
 rating surveys to students on campus and computer security experts.
@@ -1352,16 +1385,17 @@ These surveys will provide me with a point of comparison against
 which to evaluate the Mechanical Turk ratings. 
 
 \item[Fall 2015]
-During this term I will finish building our marketplace app. The 
-app will run on Android, and all the rating and app data will be 
-stored in a Postgres database running on a Ruby server. The app 
+During this term I will finish building the marketplace app. It 
+will run on Android, and all the ratings and data for the apps in
+the marketplace will be 
+stored in the database, which will live on a Ruby server. The app 
 will be released on the Play Store and available for download 
-from my website. (Our own app will also be available for rating, 
+from my website. (My app will also be available for rating, 
 and I will monitor any ratings we receive.)
 
 I will perform usability studies to validate that users are able 
 to understand and employ the app. These user studies will be posted
-on Mechanical Turk, as well as in-person studies with participants
+on Mechanical Turk, and run as in-person studies with participants
 recruited on campus. If these studies reveal problems with the 
 design of the app, I will incorporate that feedback into the app.
 
@@ -1370,9 +1404,10 @@ During this semester I will examine the app ratings, and determine
 cases where developers might be able to adjust their permissions
 or provide better explanations to address user concerns. I will 
 reach out to app developers to discuss how they could make their 
-apps meet their users' privacy needs (Sec~\ref{subsubsec-dev-comm}). 
+apps meet their users' privacy needs or clarify their permission 
+requirements (Sec~\ref{subsubsec-dev-comm}). 
 This will entail calling attention to the way users are perceiving 
-their app's permissions, and possibly providing actionable feedback
+their app's permissions, and possibly providing feedback on how
 to address user concerns.
 
 \end{description}
@@ -1400,7 +1435,7 @@ to address user concerns.
 %disseminating robust systems. All code will be released with the most
 %generous licenses---ideally Open Source---permitted by the components we
 %build on. We are also experienced in building and nurturing user
-%communities for our systems.
+%communities for my systems.
 %
 %\paragraph{Work Plan}
 %
@@ -1418,7 +1453,7 @@ to address user concerns.
 %(Sec~\ref{subsec-perm-ui}). This will allow us to build prototypes of the 
 %apps for testing (Sec~\ref{subsec-the-apps}). These prototype apps will 
 %also be completed in the first year. We will also gather ratings for approximately 1000 
-%apps to seed our prototype (Sec~\ref{subsec-gather-ratings}). This will be 
+%apps to seed my prototype (Sec~\ref{subsec-gather-ratings}). This will be 
 %necessary to perform realistic user studies.
 %% Some studies and a first prototype
 %
@@ -1426,17 +1461,17 @@ to address user concerns.
 %During the second year we will complete those studies that depend on the 
 %prototype apps, such as examining how users decide their priorities
 %in the trade off between functionality and privacy (Sec~\ref{subsec-analyzing-ratings}). We will use the results of these
-%studies to design features for our apps that are meant to encourage
+%studies to design features for my apps that are meant to encourage
 %secure behavior in users (Sec~\ref{subsec-app-selection}).
 %% Further studies that depend on the prototype
 %
 %\item[Year 3]
-%During this year, we will rebuild our apps to incorporate the 
+%During this year, we will rebuild my apps to incorporate the 
 %features designed in year two, to allow users to personalize the app store 
 %and expand communication channels between users and developers 
 %(Sec~\ref{subsec-app-selection}).
 %
-%We will also redesign our original studies for other platforms that
+%We will also redesign my original studies for other platforms that
 %are popular at the time, such as (potentially) Windows, Firefox OS, etc.
 %% Expanding prototypes in to more robust apps. Repeating studies 
 %% on other platforms.
@@ -1446,8 +1481,8 @@ to address user concerns.
 %
 %\section{Broader Impact}
 %
-%Our proposal is driven heavily by its intended social impact on
-%non-technical end-users. App stores have become our most standard
+%my proposal is driven heavily by its intended social impact on
+%non-technical end-users. App stores have become my most standard
 %app delivery platform, and their success means they are
 %expanding into ever more domains. Simply by virtue of their widespread
 %use, which is starting to encompass a notable percentage of the
@@ -1457,7 +1492,7 @@ to address user concerns.
 %result, techniques to improve the privacy-relevant decisions of users
 %are of pressing and urgent need.
 %
-%In this area, our work is focusing on user-facing areas. We are
+%In this area, my work is focusing on user-facing areas. We are
 %studying user perceptions of ratings and of interface choices. All
 %these are meant to directly assist end-users in employing the results
 %of this work.
