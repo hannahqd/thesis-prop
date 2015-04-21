@@ -32,6 +32,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{paralist}
+\usepackage{wrapfig}
 
 \usepackage{setspace}
 %\singlespacing
@@ -48,27 +49,27 @@
 
 \begin{document}
 
-%\author{Hannah Quay-de la Vallee}
-%\title{By the People, For the People: \\Community Ratings for App Privacy \\ \ \\ Thesis Proposal}
-%\date{May 19, 2015}
+\author{Hannah Quay-de la Vallee}
+\title{By the People, For the People: \\ Community Ratings of App Privacy \\ \ \\ Thesis Proposal}
+\date{May 19, 2015}
 
-%\maketitle
+\maketitle
+
+\maketitle % PROPOSAL
+
+\newpage
+
+\tableofcontents % PROPOSAL
+
+\newpage
+
+\doublespacing
+
 
 \setcounter{page}{1}
 \pagestyle{empty}
 \hypersetup{pageanchor=false}
 
-\begin{center}
-{\Large By the People, For the People:\\
-  Community Ratings for App Privacy\\ \ \\}
-  Hannah Quay-de la Vallee
-\end{center}
-
-\smallskip
-
-\centerline{\bf }
-
-\bigskip
 
 \pagestyle{plain}
 
@@ -78,7 +79,7 @@ Apps use access to hardware resources and sensitive
 user data to enable users to customize their devices. 
 Because these apps are usually written by untrusted 
 third-parties, they become significant attack vectors 
-on users security and privacy. To protect themselves, 
+on users' security and privacy. To protect themselves, 
 users need to be able to control apps' access to 
 sensitive resources. Most systems thus give users 
 the impression of control by requiring some form of 
@@ -95,15 +96,15 @@ the potential risks of these permissions. This allows
 users with opinions and concerns about app permissions 
 to share their views with other users. This thesis will 
 design and build such a marketplace. It will use 
-crowdsourcing to design the interface and to acquire 
-ratings for apps. It will investigate how to customize 
+crowdsourcing to validate the interface design and it will
+gather and compare permission ratings from a variety of 
+sources (such as crowd workers, college students, security 
+experts, and automated systems). It will investigate how to customize 
 the marketplace to make it better suited to each user. 
 
 Along with building the marketplace, this thesis will 
-also examine how user ratings are affected by external 
-factors such as the brand of the app, and how the ratings
-can help users make better selections and developers 
-to meet user needs.
+also examine how user ratings can help users make better 
+selections and assist developers in meeting user needs.
 
 \end{abstract}
 
@@ -113,6 +114,11 @@ to meet user needs.
 
 
 \section{Introduction}
+
+\emph{\paragraph{Thesis Statement}
+Ratings of apps' privacy, in addition to ratings of functionality, 
+can enable an app marketplace that incorporates user privacy into 
+the app ranking process.}
 
 Apps have become pervasive
 in consumers' lives 
@@ -144,19 +150,21 @@ of extensive research
 \cite{droidrisk-2013, android-repackaged-CODASPY12, comDroid-MOBISYS11}, 
 %TODO: Update citations
 but that research does not address a different,
-important problem: \emph{how can systems help users make informed privacy and
+important problem: How can systems help users make informed privacy and
   security decisions about apps based on the permissions that the apps
-  require}.
+  require?
+In this thesis, I will demonstrate that \emph{ratings of app 
+privacy can enable an app marketplace that incorporates user 
+privacy into the app ranking process.} This could help users 
+find apps that align with their privacy needs.
 
-To address this issue, many
-platforms control apps' access to hardware resources 
+Many app platforms currently try address the issue of
+user privacy by controlling apps' access to hardware resources 
 and user data with some type of permissions system,
 and require user consent before an app can use any
 of those resources and data. Permission models and their presentation 
 vary across operating systems. Take, for example, the permission systems
-for Android and iOS, the two most popular smartphone operating systems. 
-%TODO: New image
-%(Fig.~\ref{permsOSs} shows iOS, Windows 8, and Android). 
+for Android and iOS, the two most popular smartphone operating systems.  
 Android takes a ``static'' approach, in that apps are given a
 \emph{manifest} of
 permissions at installation time, and may use any of them at will at runtime.
@@ -445,12 +453,13 @@ on those prototypes.
 \paragraph{Methodology}
 \label{subsec-small-methods}
 
-\begin{figure}
-\centering
-    \includegraphics[width=.35\linewidth]{img/GradesPerms.png}
+\begin{wrapfigure}{l}{0.5\textwidth}
+    \begin{center}
+        \includegraphics[width=.8\linewidth]{img/GradesPerms.png}
+    \end{center}
     \caption{A prototype interface for permission ratings.}
     \label{grade-perms}
-\end{figure}
+\end{wrapfigure}
 
 I explored each prototype with a survey on Mechanical Turk.
 These surveys were 
@@ -516,6 +525,13 @@ convey to subjects that the ratings were from other Android users.
 This is therefore something that should be considered in the 
 design of the complete marketplace.
 
+\label{ss-sec-stars-r1}
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/stars/starsR1.png}
+\end{center}
+\end{wrapfigure}
+
 \paragraph{Stars}
 \label{s-sec-stars}
 
@@ -524,10 +540,7 @@ and is already in use in the Google Play store to display apps' overall
 functionality ratings. It is therefore a natural basis for experimentation.
 
 % \,\protect\includegraphics[height=10pt]{img/TinyStars.png}}
-\label{ss-sec-stars-r1}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/stars/starsR1.png}
-\end{center}
+
 
 Possibly due to the ubiquity of five-star ratings, 
 subjects seemed to have preconceptions 
@@ -553,16 +566,22 @@ leveraging users' existing understanding of an out-of-five system while
 expressing that the ratings are about privacy.
 
 
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/locks/locksR1.png}
+\end{center}
+\end{wrapfigure}
+
 \paragraph{Locks}
 \label{s-sec-locks}
 
 One symbol I used place of stars was locks, a natural visual metaphor for protection.
 My original lock design used yellow locks over a grey background:
 % \,\protect\includegraphics[height=10pt]{img/TinyLock1.png}}
-\label{ss-sec-locks-r1}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR1.png}
-\end{center}
+%\label{ss-sec-locks-r1}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR1.png}
+%\end{center}
 This design caused a number of
 misconceptions.
 First, although most subjects understood that the locks were privacy 
@@ -577,6 +596,12 @@ dangerous permissions were the safest. I label this confusion,
 present in many interfaces, the 
 \emph{better-or-worse} phenomenon, and discuss it more in \refsec{common-findings}.
 
+\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/locks/locksR2.png}
+\end{center}
+\end{wrapfigure}
+
 The second lock interface, drawing from the traffic light interface
 (\refsec{ss-sec-traffic-r2}), tried to eliminate the better-or-worse 
 phenomenon by using red and green locks:\footnote{For this 
@@ -585,9 +610,9 @@ phenomenon by using red and green locks:\footnote{For this
   should address the full spectrum of colorblindness.}
 % \,\protect\includegraphics[height=11pt]{img/TinyLock2.png}}
 \label{ss-sec-locks-r2}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR2.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR2.png}
+%\end{center}
 To further reinforce the message of privacy, the 
 green locks were closed and the red locks open.
 I also hoped that using color would reduce 
@@ -595,6 +620,13 @@ the perception that the locks indicated restricted services (in which
 case \emph{fewer} locks would be preferable).
 Though these changes helped curtail the better-or-worse phenomenon, they did not 
 eliminate it entirely. 
+
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/locks/locksR3.png}
+\end{center}
+\end{wrapfigure}
 
 Because the better-or-worse phenomenon was at least partially caused 
 by confusion about whether more or fewer icons was better, I 
@@ -605,9 +637,9 @@ color and open-ness to convey the rating:
 %\protect\includegraphics[height=10pt]{img/TinyLockYellow.png}
 %\protect\includegraphics[height=10pt]{img/TinyLockRed.png}}
 \label{ss-sec-locks-r3}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR3.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR3.png}
+%\end{center}
 Using
 only red and green locks would have been too similar to the checkbox
 interface (see \refsec{ss-sec-binary-r1}), 
@@ -617,6 +649,12 @@ locks. This
 had the added benefit of conveying more 
 information than just red and green locks without adding much cognitive 
 effort.
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/locks/locksR4.png}
+\end{center}
+\end{wrapfigure}
 
 This redesign improved understanding, but 
 some subjects still thought that the locks indicated inaccessible features.
@@ -632,9 +670,9 @@ were an aggregate of community opinions.)
 %\protect\includegraphics[height=10pt]{img/SmallLockYellow.png}
 %\protect\includegraphics[height=10pt]{img/SmallLockRed.png}}
 \label{ss-sec-locks-r4}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR4.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/locks/locksR4.png}
+%\end{center}
 The final lock interface was an improvement over its 
 predecessors, 
 but some subjects still thought the locks indicated 
@@ -647,6 +685,11 @@ and traffic signs (\refsec{ss-sec-traffic-r4}),
 I eliminated this interface family.
 
 
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/eyes/eyesR2.png}
+\end{center}
+\end{wrapfigure}
 
 \paragraph{Eyes}
 \label{s-sec-eyes}
@@ -657,9 +700,9 @@ used a no-smoking-style circle-and-slash over an eye,
 proved too difficult to see at small scale
 (some subjects thought it was a watch). I thus tried different-color eyes:
 \label{ss-sec-eyes-r2}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/eyes/eyesR2.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/eyes/eyesR2.png}
+%\end{center}
 The more dangerous a permission was, the more red eyes it had; the more
 benign it was, the more grey eyes it had.
 Additionally, the red centers had 
@@ -677,7 +720,14 @@ percentage bars (\refsec{ss-sec-pbars-r4}) and traffic signs
 (\refsec{ss-sec-traffic-r4}) were still better understood by subjects,
 so I disqualified this interface.
 
-\subsection{Guy Fawkes Masks}
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/masks/masksR1.png}
+\end{center}
+\end{wrapfigure}
+
+\paragraph{Guy Fawkes Masks}
 \label{s-sec-masks}
 
 I also explored out-of-five ratings using Guy Fawkes masks, which 
@@ -686,15 +736,23 @@ film adaptation, and have since become a symbol for personal
 privacy and activism.
 % \,\protect\includegraphics[height=12pt]{img/TinyMasks.png}}
 \label{ss-sec-masks-r1}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/masks/masksR1.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/masks/masksR1.png}
+%\end{center}
 Unfortunately, subjects felt the
 rating showed how well protected their information was from the government 
 (possibly due to the ``hacktivist'' group Anonymous' adoption of the mask as a symbol). 
 As this is not a protection a permissions system can provide and it is dangerous for an
 interface to suggest protections that do not exist, I eliminated all
 variations of this design.
+
+\newpage
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/checkboxes/checkboxesR1.png}
+\end{center}
+\end{wrapfigure}
 
 \paragraph{Binary Checkboxes}
 \label{s-sec-checkbox}
@@ -707,15 +765,22 @@ they did not approve.
 % \,\protect\includegraphics[height=10pt]{img/TinyCheck.png}\,
 %\protect\includegraphics[height=10pt]{img/TinyEx.png}}
 \label{ss-sec-binary-r1}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/checkboxes/checkboxesR1.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/checkboxes/checkboxesR1.png}
+%\end{center}
 Unfortunately, I discovered a very significant confusion: in this interface
 the red X was meant to indicate a potentially invasive permission, but 
 subjects thought it meant that the given permission had been \emph{disabled}. This
 is an extreme case of the better-or-worse phenomenon and is an 
 alarming misconception. I therefore eliminated this interface without attempting to 
 redesign it.
+
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/grades/gradesR1.png}
+\end{center}
+\end{wrapfigure}
 
 \paragraph{Grades}
 \label{s-sec-grades}
@@ -725,17 +790,24 @@ interface used letter grades to present the ratings.
 Typically used to rate students' academic performance, 
 grades are also used in some non-educational settings (e.g., 
 the New York City Department of Health restaurant 
-inspection results):
+inspection results).
 % \,\protect\includegraphics[height=10pt]{img/A.png}\,
 %\protect\includegraphics[height=10pt]{img/C.png}\,
 %\protect\includegraphics[height=10pt]{img/D.png}}
 \label{ss-sec-grades-r1}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/grades/gradesR1.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/grades/gradesR1.png}
+%\end{center}
 Unfortunately, most subjects thought the ratings were for 
 the functionality of a permission's service. As this interface failed
 in its primary purpose, I eliminated it.
+
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/bars/barsR1.png}
+\end{center}
+\end{wrapfigure}
 
 \paragraph{Percentage Bars}
 \label{s-sec-pbars}
@@ -751,9 +823,9 @@ rating, giving a more obvious visual distinction between ratings:
 %\protect\includegraphics[height=8pt]{img/Bars12/YellowWhiteBar.png}\,
 %\protect\includegraphics[height=8pt]{img/Bars12/RedWhiteBar.png}}
 \label{ss-sec-pbars-r1}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/bars/barsR1.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/bars/barsR1.png}
+%\end{center}
 Subjects understood that the bars indicated privacy ratings, 
 and this interface did not suffer from the better-or-worse
 phenomenon, due in part to the colors of the bars. 
@@ -761,7 +833,7 @@ One subject stated the bars rated the permissions from ``most risky to the least
 red being the highest and the green being generally safe''.
 
 Although the bars were effective, subjects' feedback on 
-the traffic signs interface (\refsec{ss-sec-traffic-r3}) 
+the traffic signs interface (discussed below) 
 revealed a potential pitfall: their comments suggested that subjects 
 perceived a green light as a signal to proceed without caution, which could 
 encourage users to download an app without considering the permissions at all. I 
@@ -788,6 +860,13 @@ because all of the colors were ``warning colors'', the effectiveness of the colo
 differentiation was diminished. Additionally
 these colors could cause warning fatigue after continuous use.
 
+
+\begin{wrapfigure}{r}{0.55\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/bars/barsR4.png}
+\end{center}
+\end{wrapfigure}
+
 To avoid these problems, we
 introduced two-color bars. As before, each bar had some percentage of 
 a warning color, (the percentage of raters who deemed the permission
@@ -795,9 +874,9 @@ unacceptable for the app), however the rest of the
 bar was green, to clarify meaning and limit warning fatigue.
 There were four variants:
 \label{ss-sec-pbars-r4}
-\begin{center}
-\includegraphics[width=.85\linewidth]{candidate-img/bars/barsR4.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.85\linewidth]{candidate-img/bars/barsR4.png}
+%\end{center}
 The first two interfaces used only red 
 and green (with two variants: red on the left or red on the right),
 so the goodness of a rating was indicated only by the ratio of red to green.
@@ -830,6 +909,14 @@ it is acceptable and half think it is not
 acceptable for this app to have that permission''. Thus I 
 subjected these interfaces to large-scale testing (\refsec{s-sec-largescale}). 
 
+
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/traffic/trafficR2.png}
+\end{center}
+\end{wrapfigure}
+
 \paragraph{Traffic Signs}
 \label{s-sec-traffic}
 
@@ -838,9 +925,9 @@ an iconography suggested by a subject from another interface.
 %``...a stop sign, caution sign, and a green light?''
 
 \label{ss-sec-traffic-r2}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/traffic/trafficR2.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/traffic/trafficR2.png}
+%\end{center}
 
 The traffic marker interface split the permissions into three categories, with headers above
 each category.
@@ -852,19 +939,35 @@ not need to be examined at all, which is not necessarily the
 intended meaning. Additionally, this interface 
 could be unsuitable for colorblind users.
 
-To address colorblindness issues, I tried a variation using position
-(as real traffic lights do):
-\label{ss-sec-traffic-r3}
+
+
+\begin{wrapfigure}{r}{0.5\textwidth}
 \begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/traffic/trafficR3.png}
+\includegraphics[width=.9\linewidth]{candidate-img/traffic/trafficR3.png}
 \end{center}
-However, it still did not address
-the problem of an overly-soothing green light. 
+\end{wrapfigure}
+
+To address colorblindness issues, I tried a variation using position
+(as real traffic lights do). However, it still did not address
+the problem of an overly-soothing green light. \\
+
+%\label{ss-sec-traffic-r3}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/traffic/trafficR3.png}
+%\end{center}
+
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{candidate-img/traffic/trafficR4.png}
+\end{center}
+\end{wrapfigure}
+
 
 \label{ss-sec-traffic-r4}
-\begin{center}
-\includegraphics[width=.5\linewidth]{candidate-img/traffic/trafficR4.png}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{candidate-img/traffic/trafficR4.png}
+%\end{center}
 
 Rather than simply changing the colors of
 the lights (which  
@@ -873,10 +976,9 @@ the next interface used traffic \emph{signs}: a red octagon
 (mimicking a stop sign), an orange diamond, and a yellow circle. 
 Because the colors would be sparser in the interface (as they were only by the section 
 headers) warning fatigue was less of
-a concern than in the percentage bars in \refsec{s-sec-pbars} 
+a concern than in the percentage bars 
 (where they were next to every permission). 
-
-This interface was well understood by subjects so I included it
+As this interface was well understood by subjects so I included it
 in the large-scale testing (\refsec{s-sec-largescale}).
 
 
@@ -904,7 +1006,7 @@ influenced my design decisions, and my selection of interfaces to study further.
 
 
 
-\subsection{Interface Evaluation}
+\subsubsection{Interface Evaluation}
 \label{s-sec-largescale}
 
 Small-scale testing allowed me to eliminate all but three interfaces. 
@@ -956,24 +1058,37 @@ I had two types of data to evaluate how well subjects understood
 the meaning of the interface: text answers to the free-response 
 question, and the Likert scale data.
 
+
+% TODO: Add rubric back in
+\begin{wrapfigure}{l}{0.6\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{graphs/InterpPercentages.png}
+    \caption{Percentage of subjects in each interpretation category.}
+    \label{text-cat}
+\end{center}
+\end{wrapfigure}
+
 To evaluate the text data, I, along with my advisor, manually coded  the correctness
 of the interpretation of the interface for each of 
 the responses.
-% TODO: Add rubric back in
+
 To classify, we used a rubric that was revised until we obtained an
 inter-coder reliability score ($\kappa$) of 0.835. 
 The rubric is too large to reproduce here completely, but it has three
 categories: \emph{Predominantly Correct Interpretation},
 \emph{Semi-Correct Interpretation}, and \emph{Incorrect Interpretation}.
-This figure summarizes the percentages of subjects in
-each class for each interface:
+Fig.~\ref{text-cat} summarizes the percentages of subjects in
+each class for each interface.
 
-\begin{figure}[h]
-\centering
-    \includegraphics[width=.5\linewidth]{graphs/InterpPercentages.png}
+
+
+
+%\begin{wrapfigure}[r]{0.5\textwidth}
+%\centering
+%    \includegraphics[width=.5\linewidth]{graphs/InterpPercentages.png}
 %    \caption{Percentage of subjects in each interpretation category.}
-    \label{text-cat}
-\end{figure}
+%    \label{text-cat}
+%\end{wrapfigure}
 Broadly classifying both correct and semi-correct
 interpretations as understanding the interface,
 all three interfaces had scores of over 50\%. 
@@ -992,21 +1107,29 @@ This would likely not occur in
 the privacy-focused app store where users would have 
 context for the ratings' meaning.
 
+\begin{wrapfigure}{l}{0.65\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{graphs/ClarityHistLikert.png}
+    \caption{Subjects' responses to the Likert-type question asking users whether they thought it was clear that the icons represented privacy ratings.}
+    \label{likert}\end{center}
+\end{wrapfigure}
+
 After subjects answered the free-response questions, I informed them that 
 the icons were privacy ratings. I asked them to rate whether this was 
 clear from the interface, on a 4-point Likert-type scale from ``completely 
 unclear'' (a value of 1) to ``completely clear'' (a value of 4).
 The ROY-G bars gave the best results, with a mean of 3.2.
 However, both the G-ROY bars and the traffic signs also performed well,
-with means of 2.9 and 3, respectively. In all three, the ratios of answers were 
+with means of 2.9 and 3, respectively (shown in Fig.~\ref{likert}). 
+In all three, the ratios of answers were 
 significantly different from chance (using a $\chi$-squared test, all the interfaces had 
 $\mathrm{p}< 0.05$).
-\begin{figure}[h]
-\centering
-    \includegraphics[width=.5\linewidth]{graphs/ClarityHistLikert.png}
-%    \caption{Subjects' responses to the Likert-type question asking users whether they thought it was clear that the icons represented privacy ratings.}
-    \label{likert}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%    \includegraphics[width=.5\linewidth]{graphs/ClarityHistLikert.png}
+%%    \caption{Subjects' responses to the Likert-type question asking users whether they thought it was clear that the icons represented privacy ratings.}
+%    \label{likert}
+%\end{figure}
 
 \paragraph{Likelihood of Recommending the System}
 \label{ssec-est-usage}
@@ -1025,20 +1148,29 @@ These results suggest there is a user base for these ratings.
 \paragraph{The Source of Permission Ratings}
 \label{s-source}
 
+\begin{wrapfigure}{l}{0.65\textwidth}
+\begin{center}
+\includegraphics[width=.9\linewidth]{graphs/SourceBeliefs.png}
+    \caption{Subjects' beliefs about the source of the ratings.}
+    \label{src-beliefs}
+    \end{center}
+\end{wrapfigure}
+
 As in the small-scale studies, I investigated whether subjects understood 
-that the ratings were from other Android users.
+that the ratings were from other Android users. Subjects' beliefs are shown 
+in Fig.~\ref{src-beliefs}.
 During 
 this large-scale study, a plurality of subjects understood that they were from other 
 Android users, but there was still confusion. 
 Although it would be ideal, it may not be possible to convey the 
 source of the ratings solely through an interface. 
 
-\begin{figure}[ht]
-\centering
-    \includegraphics[width=.5\linewidth]{graphs/SourceBeliefs.png}
-%    \caption{Subjects' beliefs about the source of the ratings.}
-    \label{src-beliefs}
-\end{figure}
+%\begin{figure}[ht]
+%\centering
+%    \includegraphics[width=.5\linewidth]{graphs/SourceBeliefs.png}
+%%    \caption{Subjects' beliefs about the source of the ratings.}
+%    \label{src-beliefs}
+%\end{figure}
 
 Over all, this study suggests that users are 
 concerned about their privacy but currently lack the tools 
@@ -1098,7 +1230,7 @@ an app to present these ratings
 to users (and obtain new ratings from them), and study factors that
 affect how people perceive the reasonableness of permissions in
 different apps. My primary means of disseminating ratings will be
-an app which will use permission ratings as a means for sorting
+an app that will use permission ratings as a means for sorting
 apps (thereby giving priority to the least offensive apps). 
 I discuss this app in Sec~\ref{subsec-the-apps}. 
 In Sec~\ref{subsec-gather-ratings} 
@@ -1265,7 +1397,7 @@ computing or security knowledge (a stereotypical example of this is a
 young adult helping their less comfortable parents or grandparents with technology).
 
 
-\subsubsection{Communicating With Developers}
+\paragraph{Communicating With Developers}
 \label{subsubsec-dev-comm}
 
 The user ratings of app permissions will constitute a corpus of 
@@ -1331,9 +1463,9 @@ deals with communicating the privacy risks of \emph{legitimate} apps.
 
 There are also systems to detect misbehavior by apps (such as
 \citet{taintDroid-OSDI10})
-and others (such as \citet{droidrisk-2013}) that use
-automated methods to flag dangerous permissions.
-\citet{expect-purpose-UbiComp12}
+and others that use
+automated methods to flag dangerous permissions (such as \citet{droidrisk-2013} 
+and \citet{whyper-SEC13}). \citet{expect-purpose-UbiComp12}
 use crowdsourcing to identify permissions that users do not expect,
 and \citet{droidganger-SPSM12} use crowdsourcing to improve user 
 understanding of Android permissions (although they are limited
@@ -1364,7 +1496,7 @@ scores.
 
 \item[Summer 2015]
 During this term I will design a method for aggregating 
-permission-level ratings in to an app-level rating. I will 
+permission-level ratings into an app-level rating. I will 
 design several possible aggregation methods (such as a 
 weighted average) and user test them on Mechanical
 Turk to determine which is the most understandable and most
@@ -1385,7 +1517,15 @@ These surveys will provide me with a point of comparison against
 which to evaluate the Mechanical Turk ratings. 
 
 \item[Fall 2015]
-During this term I will finish building the marketplace app. It 
+
+During this term I will gather ratings from automated sources 
+such as Whyper~\cite{whyper-SEC13}, which finds permissions 
+that are not explained by an app's description, and 
+DroidRisk~\cite{droidrisk-2013}, which flags permissions or 
+permissions combinations that are similar to those found in 
+malware apps.
+
+I will finish building the marketplace app. It 
 will run on Android, and all the ratings and data for the apps in
 the marketplace will be 
 stored in the database, which will live on a Ruby server. The app 
